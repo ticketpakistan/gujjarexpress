@@ -19,20 +19,27 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "BusOrCoach",
     "name": "Gujjar Express",
     "url": "https://gujjarexpress.com",
     "telephone": "+92-336-324-6801",
     "email": "contact@ticketpakistan.com",
-    "sameAs": ["https://ticketpakistan.com"],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+92-336-324-6801",
-      "contactType": "customer service",
-      "availableLanguage": ["English", "Urdu"]
-    }
+    "provider": {
+      "@type": "Organization",
+      "name": "TicketPakistan",
+      "url": "https://ticketpakistan.com"
+    },
+    "potentialAction": {
+      "@type": "ReserveAction",
+      "target": "https://ticketpakistan.com/",
+      "name": "Book Gujjar Express Tickets at TicketPakistan.com"
+    },
+    "areaServed": "Pakistan",
+    "availableLanguage": ["English", "Urdu"]
   }
   </script>
+  <link rel="icon" href="https://ticketpakistan.com/favicon.ico" type="image/x-icon" />
+  <link rel="preload" as="image" href="badshahi_mosque.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -415,7 +422,7 @@
 
   <!-- NAV -->
   <nav>
-    <a class="nav-logo" href="#"><div class="nav-dot"></div>GUJJAR EXPRESS</a>
+    <a class="nav-logo" href="https://gujjarexpress.com/"><div class="nav-dot"></div>GUJJAR EXPRESS</a>
     <a class="nav-book" href="https://ticketpakistan.com/" target="_blank" rel="noopener">Book Tickets</a>
   </nav>
 
