@@ -4,30 +4,29 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gujjar Express — Book Tickets Online</title>
-  <meta name="description" content="Book Gujjar Express coach tickets online at TicketPakistan.com. Long-distance travel across Pakistan — Karachi, Lahore, Islamabad, Peshawar, Mansehra and beyond." />
+  <meta name="description" content="Book Gujjar Express coach tickets online at TicketPakistan.com. Long-distance travel across Pakistan — Karachi, Lahore, Islamabad Interchange, Mansehra and beyond." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --black:       #0a0a0a;
-      --dark:        #111111;
-      --dark-mid:    #1a1a1a;
-      --gold:        #e74c3c;
-      --gold-light:  #ff6b5b;
-      --gold-dim:    #c0392b;
-      --white:       #ffffff;
-      --gray:        #999999;
-      --light-gray:  #ddcccc;
-      --blue-accent: #e74c3c;
+      --black:      #080808;
+      --dark:       #101010;
+      --mid:        #181818;
+      --panel:      #1f1f1f;
+      --gold:       #f5c518;
+      --gold-light: #ffe063;
+      --gold-dim:   #c49b10;
+      --white:      #ffffff;
+      --gray:       #777777;
+      --light:      #cccccc;
     }
 
     html { scroll-behavior: smooth; }
-
     body {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Barlow', sans-serif;
       background: var(--black);
       color: var(--white);
       overflow-x: hidden;
@@ -37,343 +36,307 @@
     nav {
       position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2.5rem;
-      background: rgba(0,0,0,0.9);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(245,197,24,0.2);
+      padding: 0 2.5rem;
+      height: 64px;
+      background: rgba(8,8,8,0.96);
+      backdrop-filter: blur(12px);
     }
-    .nav-brand {
+    .nav-logo {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.8rem;
-      letter-spacing: 0.12em;
-      color: var(--white);
-      text-decoration: none;
+      font-size: 1.6rem; letter-spacing: 0.14em;
+      color: var(--white); text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
     }
-    .nav-brand span { color: var(--gold); }
-    .nav-cta {
+    .nav-logo-dot {
+      width: 8px; height: 8px; border-radius: 50%;
       background: var(--gold);
-      color: var(--black);
-      font-weight: 700; font-size: 0.82rem;
-      padding: 0.55rem 1.4rem;
-      border-radius: 2px;
-      text-decoration: none;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      transition: background 0.2s, transform 0.15s;
     }
-    .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .nav-book {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: var(--gold); color: var(--black);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.85rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.5rem 1.4rem;
+      text-decoration: none;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      transition: background 0.2s;
+    }
+    .nav-book:hover { background: var(--gold-light); }
 
     /* ── HERO ── */
     .hero {
       position: relative;
-      min-height: 100vh;
+      height: 100vh; min-height: 600px;
       display: flex; align-items: flex-end;
       overflow: hidden;
     }
-    .hero-bg {
+    .hero-img {
       position: absolute; inset: 0;
-      background: url('bus.jpeg') center center / cover no-repeat;
+      background: url('bus.jpeg') center 60% / cover no-repeat;
     }
-    .hero-bg::after {
+    .hero-img::after {
       content: '';
       position: absolute; inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.3) 0%,
-        rgba(0,0,0,0.1) 30%,
-        rgba(0,0,0,0.7) 60%,
-        rgba(0,0,0,0.95) 100%
-      );
+      background:
+        linear-gradient(to right, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.5) 50%, rgba(8,8,8,0.2) 100%),
+        linear-gradient(to top, rgba(8,8,8,0.98) 0%, rgba(8,8,8,0.3) 40%, transparent 70%);
     }
+
+    /* gold ticker tape */
+    .hero-ticker {
+      position: absolute; top: 64px; left: 0; right: 0;
+      background: var(--gold);
+      padding: 0.4rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-block;
+      animation: ticker 20s linear infinite;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 0.78rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--black);
+    }
+    .ticker-track span { margin: 0 2rem; }
+    .ticker-sep { color: rgba(0,0,0,0.3); }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
     .hero-content {
       position: relative; z-index: 2;
-      width: 100%;
-      padding: 0 6vw 5rem;
-      animation: fadeUp 0.9s ease both;
+      padding: 0 5vw 4rem;
+      max-width: 700px;
     }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.2em; text-transform: uppercase;
+    .hero-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--gold);
+      display: flex; align-items: center; gap: 0.7rem;
       margin-bottom: 1rem;
     }
-    .hero-eyebrow::before {
-      content: ''; display: block;
-      width: 32px; height: 1.5px;
-      background: var(--gold);
-    }
+    .hero-label::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); }
     .hero h1 {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(4rem, 10vw, 9rem);
-      line-height: 0.95;
-      letter-spacing: 0.06em;
+      font-size: clamp(4.5rem, 11vw, 9.5rem);
+      line-height: 0.9; letter-spacing: 0.04em;
       color: var(--white);
-      margin-bottom: 0.4rem;
+      margin-bottom: 1.2rem;
     }
-    .hero h1 span { color: var(--gold); }
-    .hero-tagline {
-      font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-      font-weight: 300;
-      color: var(--light-gray);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 2rem;
+    .hero h1 .g { color: var(--gold); }
+    .hero-desc {
+      font-size: 1rem; font-weight: 300;
+      color: var(--light); line-height: 1.7;
+      max-width: 460px; margin-bottom: 2rem;
     }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-primary {
+    .hero-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .btn-gold {
       display: inline-flex; align-items: center; gap: 0.6rem;
-      background: var(--gold);
-      color: var(--black);
+      background: var(--gold); color: var(--black);
+      font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700; font-size: 1rem;
-      padding: 1rem 2.2rem;
-      border-radius: 2px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.85rem 2rem;
       text-decoration: none;
-      letter-spacing: 0.04em;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 4px 24px rgba(245,197,24,0.35);
+      clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+      transition: background 0.2s, transform 0.15s;
+      box-shadow: 0 0 30px rgba(245,197,24,0.25);
     }
-    .btn-primary:hover {
-      background: var(--gold-light);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(245,197,24,0.5);
-    }
-    .btn-secondary {
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-outline {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      background: transparent;
-      color: var(--light-gray);
-      font-weight: 500; font-size: 0.95rem;
-      padding: 1rem 1.8rem;
-      border: 1px solid rgba(255,255,255,0.25);
-      border-radius: 2px;
+      background: transparent; color: var(--light);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600; font-size: 1rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.85rem 1.8rem;
+      border: 1px solid rgba(255,255,255,0.2);
       text-decoration: none;
       transition: border-color 0.2s, color 0.2s;
     }
-    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
-
-    /* ── TRUST BAR ── */
-    .trust-bar {
-      background: var(--gold);
-      padding: 1rem 2.5rem;
-      display: flex; align-items: center; justify-content: center;
-      gap: 3rem; flex-wrap: wrap;
-    }
-    .trust-item {
-      display: flex; align-items: center; gap: 0.5rem;
-      color: var(--white);
-      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-    .trust-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
     /* ── ROUTES ── */
-    .routes-section {
+    .routes-wrap {
       background: var(--dark);
-      padding: 7rem 2.5rem;
+      padding: 6rem 0;
+      overflow: hidden;
     }
-    .section-label {
-      font-size: 0.72rem; font-weight: 600;
+    .routes-header {
+      padding: 0 5vw;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .routes-header-left {}
+    .routes-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem; font-weight: 700;
       letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold-dim);
-      margin-bottom: 1rem;
-      display: flex; align-items: center; justify-content: center; gap: 0.8rem;
+      color: var(--gold); margin-bottom: 0.5rem;
     }
-    .section-label::before, .section-label::after {
-      content: ''; display: block; width: 28px; height: 1px; background: var(--gold-dim);
-    }
-    .section-title {
+    .routes-title {
       font-family: 'Bebas Neue', sans-serif;
       font-size: clamp(2.5rem, 5vw, 4rem);
-      letter-spacing: 0.08em;
-      color: var(--white);
-      text-align: center;
-      margin-bottom: 0.8rem;
+      letter-spacing: 0.06em; color: var(--white);
+      line-height: 1;
     }
-    .section-sub {
-      text-align: center;
-      color: var(--gray);
-      font-size: 0.95rem;
-      margin-bottom: 3.5rem;
-    }
-    .routes-grid {
-      max-width: 900px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 1rem;
-    }
-    .route-chip {
-      background: var(--dark-mid);
-      border: 1px solid rgba(245,197,24,0.15);
-      border-radius: 3px;
-      padding: 1rem 1.2rem;
-      display: flex; align-items: center; gap: 0.6rem;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .route-chip:hover {
-      border-color: var(--gold);
-      background: rgba(245,197,24,0.06);
-    }
-    .route-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--gold); flex-shrink: 0;
-    }
-    .route-name {
-      font-size: 0.9rem; font-weight: 500;
-      color: var(--light-gray);
-    }
-    .routes-note {
-      text-align: center; margin-top: 2rem;
-      color: var(--gray); font-size: 0.85rem;
-    }
-    .routes-note a {
+    .routes-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
       color: var(--gold); text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem;
     }
-    .routes-note a:hover { text-decoration: underline; }
-
-    /* ── BOOKING ── */
-    .booking-section {
-      background: var(--black);
-      padding: 7rem 2.5rem;
-      text-align: center;
+    .routes-link:hover { color: var(--gold-light); }
+    .routes-scroll {
+      display: flex; gap: 1px;
+      padding: 0 5vw;
+      flex-wrap: wrap;
     }
-    .booking-card {
-      display: inline-block;
-      background: var(--dark-mid);
-      border: 1px solid rgba(245,197,24,0.2);
-      border-radius: 4px;
-      padding: 3rem 3.5rem;
-      max-width: 480px; width: 100%;
-      position: relative; overflow: hidden;
+    .route-block {
+      background: var(--mid);
+      flex: 1; min-width: 130px;
+      padding: 1.5rem 1.2rem;
+      border-left: 2px solid transparent;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: default;
     }
-    .booking-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    .route-block:hover {
+      border-color: var(--gold);
+      background: var(--panel);
     }
-    .booking-card-icon {
-      width: 64px; height: 64px;
-      background: rgba(245,197,24,0.1);
-      border: 1px solid rgba(245,197,24,0.25);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.5rem;
-    }
-    .booking-card-icon svg { color: var(--gold); width: 28px; height: 28px; }
-    .booking-card h3 {
+    .route-block-num {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 2rem; letter-spacing: 0.08em;
-      color: var(--white); margin-bottom: 0.7rem;
+      font-size: 1.8rem; color: rgba(245,197,24,0.15);
+      line-height: 1; margin-bottom: 0.3rem;
     }
-    .booking-card p {
-      color: var(--gray); font-size: 0.95rem;
-      line-height: 1.65; margin-bottom: 2rem;
-    }
-    .booking-card .btn-primary { width: 100%; justify-content: center; font-size: 1.05rem; }
-    .or-divider {
-      display: flex; align-items: center; gap: 1rem;
-      margin: 1.5rem 0;
-      color: var(--gray); font-size: 0.8rem; letter-spacing: 0.1em;
-    }
-    .or-divider::before, .or-divider::after {
-      content: ''; flex: 1; height: 1px;
-      background: rgba(255,255,255,0.1);
-    }
-    .btn-whatsapp {
-      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
-      width: 100%;
-      background: #25d366;
-      color: var(--white);
+    .route-block-name {
+      font-family: 'Barlow Condensed', sans-serif;
       font-weight: 600; font-size: 1rem;
-      padding: 0.9rem 2rem;
-      border-radius: 2px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.05em; color: var(--light);
     }
-    .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-1px); }
+    .routes-more {
+      padding: 1.5rem 5vw 0;
+      font-size: 0.85rem; color: var(--gray);
+    }
+    .routes-more a { color: var(--gold); text-decoration: none; }
+    .routes-more a:hover { text-decoration: underline; }
+
+    /* ── BOOK STRIP ── */
+    .book-strip {
+      background: var(--gold);
+      padding: 3.5rem 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .book-strip-left h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      letter-spacing: 0.06em;
+      color: var(--black); line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .book-strip-left p {
+      font-size: 0.95rem; color: rgba(0,0,0,0.6);
+    }
+    .book-strip-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-black {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--black); color: var(--gold);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-black:hover { background: #1a1a1a; }
+    .btn-wa-dark {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--black);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      border: 2px solid var(--black);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-wa-dark:hover { background: var(--black); color: var(--gold); }
 
     /* ── CONTACT ── */
     .contact-section {
       background: var(--dark);
-      padding: 7rem 2.5rem;
+      padding: 6rem 5vw;
     }
-    .contact-inner { max-width: 900px; margin: 0 auto; text-align: center; }
-    .contact-inner .section-label { color: var(--gold-dim); }
-    .contact-inner .section-label::before,
-    .contact-inner .section-label::after { background: var(--gold-dim); }
+    .contact-top {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;
+    }
+    .contact-top h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 4vw, 3.5rem);
+      letter-spacing: 0.06em; color: var(--white);
+    }
+    .contact-top p { font-size: 0.9rem; color: var(--gray); }
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem; margin-top: 3.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1px;
+      background: #222;
     }
-    .contact-card {
-      background: var(--dark-mid);
-      border: 1px solid rgba(245,197,24,0.12);
-      border-radius: 4px;
-      padding: 2rem 1.5rem;
+    .c-card {
+      background: var(--mid);
+      padding: 2rem 1.8rem;
       text-decoration: none;
-      transition: background 0.2s, border-color 0.2s, transform 0.2s;
-      display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
+      display: flex; flex-direction: column; gap: 0.6rem;
+      transition: background 0.2s;
+      border-top: 2px solid transparent;
     }
-    .contact-card:hover {
-      background: rgba(245,197,24,0.06);
-      border-color: rgba(245,197,24,0.4);
-      transform: translateY(-3px);
-    }
-    .contact-card-icon {
-      width: 48px; height: 48px;
-      background: rgba(245,197,24,0.1);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .contact-card-icon svg { color: var(--gold); width: 22px; height: 22px; }
-    .contact-card-label {
-      font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.15em; text-transform: uppercase;
+    .c-card:hover { background: var(--panel); border-color: var(--gold); }
+    .c-card-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
       color: var(--gold-dim);
     }
-    .contact-card-value {
-      font-size: 0.95rem; color: var(--light-gray);
-      text-align: center; line-height: 1.5;
+    .c-card-val {
+      font-size: 1rem; font-weight: 500;
+      color: var(--white); line-height: 1.4;
+    }
+    .c-card-hint {
+      font-size: 0.78rem; color: var(--gray);
     }
 
     /* ── FOOTER ── */
     footer {
       background: #050505;
-      padding: 2rem 2.5rem;
-      border-top: 1px solid rgba(245,197,24,0.1);
+      padding: 1.5rem 5vw;
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 1rem;
+      border-top: 1px solid #1a1a1a;
     }
-    .footer-brand {
+    .foot-logo {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.4rem; letter-spacing: 0.1em;
+      font-size: 1.4rem; letter-spacing: 0.12em;
       color: var(--white);
+      display: flex; align-items: center; gap: 0.4rem;
     }
-    .footer-brand span { color: var(--gold); }
-    .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
-    .footer-link {
-      font-size: 0.78rem; color: rgba(245,197,24,0.45);
-      text-decoration: none; transition: color 0.2s;
-    }
-    .footer-link:hover { color: var(--gold); }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .animate { opacity: 0; animation: fadeUp 0.7s ease forwards; }
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.35s; }
+    .foot-logo span { color: var(--gold); }
+    .foot-copy { font-size: 0.75rem; color: #333; }
+    .foot-link { font-size: 0.75rem; color: var(--gold-dim); text-decoration: none; }
+    .foot-link:hover { color: var(--gold); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 640px) {
-      nav { padding: 1rem 1.2rem; }
-      .hero-content { padding: 0 1.5rem 3.5rem; }
-      .booking-card { padding: 2rem 1.5rem; }
-      .trust-bar { gap: 1.2rem; }
+      nav { padding: 0 1.2rem; }
+      .hero-content { padding: 0 1.5rem 3rem; }
+      .routes-header, .routes-scroll, .routes-more,
+      .book-strip, .contact-section { padding-left: 1.5rem; padding-right: 1.5rem; }
       footer { flex-direction: column; text-align: center; }
     }
   </style>
@@ -382,161 +345,151 @@
 
   <!-- NAV -->
   <nav>
-    <a class="nav-brand" href="#"><span>GUJJAR</span> EXPRESS</a>
-    <a class="nav-cta" href="https://ticketpakistan.com/" target="_blank" rel="noopener">Book Tickets</a>
+    <a class="nav-logo" href="#">
+      <div class="nav-logo-dot"></div>
+      GUJJAR EXPRESS
+    </a>
+    <a class="nav-book" href="https://ticketpakistan.com/" target="_blank" rel="noopener">Book Tickets</a>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg"></div>
+    <div class="hero-img"></div>
+
+    <!-- ticker -->
+    <div class="hero-ticker">
+      <span class="ticker-track">
+        <span>Karachi</span><span class="ticker-sep">◆</span>
+        <span>Lahore</span><span class="ticker-sep">◆</span>
+        <span>Islamabad Interchange</span><span class="ticker-sep">◆</span>
+        <span>Mansehra</span><span class="ticker-sep">◆</span>
+        <span>Abbottabad</span><span class="ticker-sep">◆</span>
+        <span>Haripur</span><span class="ticker-sep">◆</span>
+        <span>Balakot</span><span class="ticker-sep">◆</span>
+        <span>Oghi</span><span class="ticker-sep">◆</span>
+        <span>Multan</span><span class="ticker-sep">◆</span>
+        <span>Faisalabad</span><span class="ticker-sep">◆</span>
+        <span>Hyderabad</span><span class="ticker-sep">◆</span>
+        <span>Sukkur</span><span class="ticker-sep">◆</span>
+        <span>Karachi</span><span class="ticker-sep">◆</span>
+        <span>Lahore</span><span class="ticker-sep">◆</span>
+        <span>Islamabad Interchange</span><span class="ticker-sep">◆</span>
+        <span>Mansehra</span><span class="ticker-sep">◆</span>
+        <span>Abbottabad</span><span class="ticker-sep">◆</span>
+        <span>Haripur</span><span class="ticker-sep">◆</span>
+        <span>Balakot</span><span class="ticker-sep">◆</span>
+        <span>Oghi</span><span class="ticker-sep">◆</span>
+        <span>Multan</span><span class="ticker-sep">◆</span>
+        <span>Faisalabad</span><span class="ticker-sep">◆</span>
+        <span>Hyderabad</span><span class="ticker-sep">◆</span>
+        <span>Sukkur</span><span class="ticker-sep">◆</span>
+      </span>
+    </div>
+
     <div class="hero-content">
-      <div class="hero-eyebrow">Long-Distance Travel Across Pakistan</div>
-      <h1>GUJJAR<br /><span>EXPRESS</span></h1>
-      <p class="hero-tagline">Comfortable · Reliable · On Time</p>
-      <div class="hero-actions">
-        <a class="btn-primary" href="https://ticketpakistan.com/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M15 3h6v6M10 14L21 3M21 15v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6"/></svg>
-          Book Tickets Online
+      <div class="hero-label">Long-Distance Coach Service · Pakistan</div>
+      <h1>GUJJAR<br /><span class="g">EXPRESS</span></h1>
+      <p class="hero-desc">
+        Book your Gujjar Express tickets online at TicketPakistan.com — or call/WhatsApp <strong style="color:var(--gold)">+92 336 324 6801</strong> to reserve your seat.
+      </p>
+      <div class="hero-btns">
+        <a class="btn-gold" href="https://ticketpakistan.com/" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14L21 3M21 15v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6"/></svg>
+          Book Tickets Now
         </a>
-        <a class="btn-secondary" href="https://wa.me/923363246801" target="_blank" rel="noopener">
-          WhatsApp Us
-        </a>
+        <a class="btn-outline" href="#contact">Contact Us</a>
       </div>
     </div>
   </section>
 
-  <!-- TRUST BAR -->
-  <div class="trust-bar">
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      Secure Online Booking
+  <!-- ROUTES -->
+  <div class="routes-wrap">
+    <div class="routes-header">
+      <div class="routes-header-left">
+        <div class="routes-tag">Our Network</div>
+        <div class="routes-title">WE TRAVEL<br />ACROSS PAKISTAN</div>
+      </div>
+      <a class="routes-link" href="https://ticketpakistan.com/" target="_blank" rel="noopener">
+        All Routes on TicketPakistan →
+      </a>
     </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Instant Confirmation
+    <div class="routes-scroll">
+      <div class="route-block"><div class="route-block-num">01</div><div class="route-block-name">Karachi</div></div>
+      <div class="route-block"><div class="route-block-num">02</div><div class="route-block-name">Lahore</div></div>
+      <div class="route-block"><div class="route-block-num">03</div><div class="route-block-name">Islamabad Interchange</div></div>
+      <div class="route-block"><div class="route-block-num">04</div><div class="route-block-name">Mansehra</div></div>
+      <div class="route-block"><div class="route-block-num">05</div><div class="route-block-name">Abbottabad</div></div>
+      <div class="route-block"><div class="route-block-num">06</div><div class="route-block-name">Haripur</div></div>
+      <div class="route-block"><div class="route-block-num">07</div><div class="route-block-name">Balakot</div></div>
+      <div class="route-block"><div class="route-block-num">08</div><div class="route-block-name">Oghi</div></div>
+      <div class="route-block"><div class="route-block-num">09</div><div class="route-block-name">Multan</div></div>
+      <div class="route-block"><div class="route-block-num">10</div><div class="route-block-name">Faisalabad</div></div>
+      <div class="route-block"><div class="route-block-num">11</div><div class="route-block-name">Hyderabad</div></div>
+      <div class="route-block"><div class="route-block-num">12</div><div class="route-block-name">Sukkur</div></div>
     </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l2-10 4 6 3-4 4 8 2-4"/></svg>
-      All Pakistan Routes
+    <div class="routes-more">& more cities — <a href="https://ticketpakistan.com/" target="_blank" rel="noopener">check all routes on TicketPakistan.com →</a></div>
+  </div>
+
+  <!-- BOOK STRIP -->
+  <div class="book-strip">
+    <div class="book-strip-left">
+      <h2>READY TO TRAVEL?</h2>
+      <p>Book online or reach us directly via call & WhatsApp</p>
     </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      Book From Any Device
+    <div class="book-strip-btns">
+      <a class="btn-black" href="https://ticketpakistan.com/" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14L21 3M21 15v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6"/></svg>
+        TicketPakistan.com
+      </a>
+      <a class="btn-wa-dark" href="https://wa.me/923363246801" target="_blank" rel="noopener">
+        WhatsApp Us
+      </a>
     </div>
   </div>
 
-  <!-- ROUTES -->
-  <section class="routes-section">
-    <div class="section-label">Our Network</div>
-    <h2 class="section-title animate">WE TRAVEL ACROSS PAKISTAN</h2>
-    <p class="section-sub animate delay-1">From the mountains of KPK to the shores of Karachi — we've got you covered.</p>
-    <div class="routes-grid animate delay-2">
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Karachi</span></div>
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Lahore</span></div>
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Islamabad Interchange</span></div>
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Mansehra</span></div>
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Abbottabad</span></div>
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Haripur</span></div>
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Balakot</span></div>
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Oghi</span></div>
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Multan</span></div>
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Faisalabad</span></div>
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Hyderabad</span></div>
-      <div class="route-chip"><div class="route-dot"></div><span class="route-name">Sukkur</span></div>
-    </div>
-    <p class="routes-note animate delay-3">& many more — <a href="https://ticketpakistan.com/" target="_blank" rel="noopener">check all routes on TicketPakistan.com →</a></p>
-  </section>
-
-  <!-- BOOKING -->
-  <section class="booking-section">
-    <div class="section-label">Reserve Your Seat</div>
-    <h2 class="section-title animate" style="margin-bottom:0.5rem;">BOOK YOUR TICKET</h2>
-    <p class="section-sub animate delay-1" style="margin-bottom:3rem;">Online or directly via call & WhatsApp</p>
-    <div class="animate delay-2">
-      <div class="booking-card">
-        <div class="booking-card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-        </div>
-        <h3>Book Online</h3>
-        <p>Visit TicketPakistan.com to choose your route, select a seat, and confirm your booking instantly.</p>
-        <a class="btn-primary" href="https://ticketpakistan.com/" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M15 3h6v6M10 14L21 3M21 15v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6"/></svg>
-          Go to TicketPakistan.com
-        </a>
-        <div class="or-divider">OR</div>
-        <a class="btn-whatsapp" href="https://wa.me/923363246801" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-          WhatsApp +92 336 324 6801
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- CONTACT -->
   <section class="contact-section" id="contact">
-    <div class="contact-inner">
-      <div class="section-label">Get In Touch</div>
-      <h2 class="section-title">CONTACT US</h2>
-      <p class="section-sub">Have questions? Reach us by phone, WhatsApp, or email.</p>
-      <div class="contact-grid">
-
-        <a class="contact-card" href="tel:+923363246801">
-          <div class="contact-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.07 2.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
-          </div>
-          <span class="contact-card-label">Phone</span>
-          <span class="contact-card-value">+92 336 324 6801</span>
-        </a>
-
-        <a class="contact-card" href="https://wa.me/923363246801" target="_blank" rel="noopener">
-          <div class="contact-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
-          </div>
-          <span class="contact-card-label">WhatsApp</span>
-          <span class="contact-card-value">+92 336 324 6801<br /><small style="opacity:0.6;font-size:0.8rem;">Tap to chat</small></span>
-        </a>
-
-        <a class="contact-card" href="mailto:contact@ticketpakistan.com">
-          <div class="contact-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <span class="contact-card-label">Email</span>
-          <span class="contact-card-value">contact@ticketpakistan.com</span>
-        </a>
-
-        <a class="contact-card" href="mailto:muhammadusman@ticketpakistan.com">
-          <div class="contact-card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </div>
-          <span class="contact-card-label">CEO, TicketPakistan</span>
-          <span class="contact-card-value">muhammadusman@<br />ticketpakistan.com</span>
-        </a>
-
+    <div class="contact-top">
+      <div>
+        <h2>CONTACT GUJJAR EXPRESS</h2>
+        <p>Call, WhatsApp, or email — we're here to help.</p>
       </div>
+    </div>
+    <div class="contact-grid">
+
+      <a class="c-card" href="tel:+923363246801">
+        <span class="c-card-tag">Phone</span>
+        <span class="c-card-val">+92 336 324 6801</span>
+        <span class="c-card-hint">Tap to call</span>
+      </a>
+
+      <a class="c-card" href="https://wa.me/923363246801" target="_blank" rel="noopener">
+        <span class="c-card-tag">WhatsApp</span>
+        <span class="c-card-val">+92 336 324 6801</span>
+        <span class="c-card-hint">Tap to chat</span>
+      </a>
+
+      <a class="c-card" href="mailto:contact@ticketpakistan.com">
+        <span class="c-card-tag">Email</span>
+        <span class="c-card-val">contact@ticketpakistan.com</span>
+        <span class="c-card-hint">General enquiries</span>
+      </a>
+
+      <a class="c-card" href="mailto:muhammadusman@ticketpakistan.com">
+        <span class="c-card-tag">CEO · TicketPakistan</span>
+        <span class="c-card-val">muhammadusman@<br />ticketpakistan.com</span>
+        <span class="c-card-hint">Muhammad Usman</span>
+      </a>
+
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-brand"><span>GUJJAR</span> EXPRESS</div>
-    <span class="footer-copy">&copy; 2025 Gujjar Express. All rights reserved.</span>
-    <a class="footer-link" href="https://ticketpakistan.com/" target="_blank" rel="noopener">Tickets via TicketPakistan.com &rarr;</a>
+    <div class="foot-logo"><div class="nav-logo-dot"></div><span>GUJJAR</span> EXPRESS</div>
+    <span class="foot-copy">&copy; 2025 Gujjar Express. All rights reserved.</span>
+    <a class="foot-link" href="https://ticketpakistan.com/" target="_blank" rel="noopener">Tickets via TicketPakistan.com →</a>
   </footer>
-
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.style.animationPlayState = 'running';
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.animate').forEach(el => {
-      el.style.animationPlayState = 'paused';
-      observer.observe(el);
-    });
-  </script>
 
 </body>
 </html>
