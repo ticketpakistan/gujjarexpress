@@ -287,16 +287,32 @@
       margin-bottom: 2rem;
     }
 
-    .hero-btns { max-width: 520px; }
+    .hero-btns {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     .btn-gold {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      background: var(--gold); color: var(--blue-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+    
+      background: var(--gold);
+      color: var(--blue-dark);
+    
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700; font-size: 1.15rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 1.1rem 2.8rem; text-decoration: none;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    
+      padding: 1.1rem 2.8rem;
+      text-decoration: none;
+    
       clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
       box-shadow: 0 4px 24px rgba(245,197,24,0.35);
+    
       transition: background 0.2s, transform 0.15s;
     }
     .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
@@ -601,9 +617,9 @@
       }
     
       .hero-card {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.8rem;
+      flex-direction: column;
+      align-items: flex-start; 
+      gap: 0.8rem;
       }
     
       .hero-card-text {
