@@ -353,37 +353,34 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.8rem;
-      flex-wrap: wrap;
+      gap: 1rem;
       max-width: 520px;
       margin-top: 1.2rem;
+      flex-wrap: nowrap;
     }
     .hero-card-text {
       font-size: 0.9rem;
       color: rgba(255,255,255,0.9);
       line-height: 1.4;
+      flex: 1;
     }
     .hero-card-text strong { color: var(--gold); font-size: 1.1rem; display: block; }
     .btn-wa-small {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-    
       background: transparent;
       color: var(--white);
-    
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 600;
       font-size: 1.1rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-    
       padding: 1rem 2.2rem;
-    
       border: 1.5px solid rgba(255,255,255,0.85);
-    
       text-decoration: none;
       transition: border-color 0.2s, color 0.2s;
+      flex-shrink: 0;
     }
 
     .btn-wa-small:hover {
@@ -484,6 +481,8 @@
     .box-phone {
       color: rgba(255,255,255,0.75);
       transition: color 0.2s;
+      width: 100%;
+      margin-top: 0.4rem;
     }
     .box-phone:hover {
       color: var(--gold);
