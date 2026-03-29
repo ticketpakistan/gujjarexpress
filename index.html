@@ -128,15 +128,28 @@
     .hero {
       min-height: 100vh;
       padding: calc(64px + 28px) 0 0;
-      background: var(--blue-dark);
       position: relative; overflow: hidden;
       display: grid;
-      grid-template-columns: 1fr 420px;
+      grid-template-columns: 1fr 1fr;
     }
+    /* Badshahi Mosque full background */
+    .hero-bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 40%;
+      display: block; z-index: 0;
+      filter: brightness(0.38) saturate(0.8);
+    }
+    /* Dark gradient overlay — heavier on left for text, lighter on right for bus photo */
     .hero::before {
       content: ''; position: absolute; inset: 0; z-index: 1;
-      background-image: radial-gradient(rgba(245,197,24,0.04) 1px, transparent 1px);
-      background-size: 28px 28px; pointer-events: none;
+      background: linear-gradient(
+        100deg,
+        rgba(8,15,46,0.88) 0%,
+        rgba(8,15,46,0.70) 45%,
+        rgba(8,15,46,0.30) 100%
+      );
+      pointer-events: none;
     }
     .hero-left {
       position: relative; z-index: 2;
@@ -145,30 +158,34 @@
     }
     .hero-left::before, .hero-left::after { display: none; }
     .hero-left-inner { position: relative; z-index: 2; }
-    .hero-photos {
-      display: flex; flex-direction: column;
+
+    /* Right column — bus photo as a proper featured frame */
+    .hero-right {
       position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      padding: 3rem 3rem 3rem 1.5rem;
     }
-    .hero-photo-card {
-      flex: 1; position: relative; overflow: hidden;
-      border-left: 3px solid rgba(245,197,24,0.35);
+    .hero-bus-frame {
+      width: 100%; max-width: 480px;
+      border-radius: 12px; overflow: hidden;
+      border: 2px solid rgba(245,197,24,0.45);
+      box-shadow:
+        0 0 0 6px rgba(245,197,24,0.08),
+        0 30px 70px rgba(0,0,0,0.7);
+      position: relative;
     }
-    .hero-photo-card img {
-      width: 100%; height: 100%;
-      object-fit: cover; display: block;
+    .hero-bus-frame img {
+      width: 100%; height: 340px;
+      object-fit: cover; object-position: center 55%;
+      display: block;
     }
-    .hero-photo-card:first-child img { object-position: center 60%; }
-    .hero-photo-card:last-child  img { object-position: center 35%; }
-    .hero-photo-card + .hero-photo-card {
-      border-top: 3px solid rgba(245,197,24,0.35);
-    }
-    .hero-photo-label {
+    .hero-bus-caption {
       position: absolute; bottom: 0; left: 0; right: 0;
-      background: linear-gradient(to top, rgba(8,15,46,0.92) 0%, transparent 100%);
-      padding: 1.8rem 1.2rem 0.9rem;
+      padding: 2rem 1.2rem 0.9rem;
+      background: linear-gradient(to top, rgba(8,15,46,0.95) 0%, transparent 100%);
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
+      letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--gold);
     }
 
@@ -412,12 +429,13 @@
 
     @media (max-width: 900px) {
       .hero { grid-template-columns: 1fr; }
-      .hero-photos { flex-direction: row; height: 280px; }
-      .hero-photo-card + .hero-photo-card { border-top: none; border-left: 3px solid rgba(245,197,24,0.35); }
-      .hero-left { padding: 3rem 4vw; }
+      .hero-right { padding: 0 4vw 3rem; justify-content: flex-start; }
+      .hero-bus-frame { max-width: 100%; }
+      .hero-bus-frame img { height: 260px; }
+      .hero-left { padding: 3rem 4vw 1.5rem; }
     }
     @media (max-width: 640px) {
-      .hero-photos { display: none; }
+      .hero-right { display: none; }
       .hero-left { padding: 2.5rem 1.5rem; }
       nav { padding: 0 1.2rem; }
       .routes-header, .routes-grid, .routes-note, .book-strip, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
@@ -465,6 +483,10 @@
 
   <!-- HERO -->
   <section class="hero">
+    <!-- Badshahi Mosque full background -->
+    <img class="hero-bg" src="badshahi_mosque.jpg" alt="Badshahi Mosque, Lahore" />
+
+    <!-- Left: content -->
     <div class="hero-left">
       <div class="hero-left-inner">
         <div class="hero-tag">Long-Distance Coach Service · Pakistan</div>
@@ -494,14 +516,12 @@
         </div>
       </div>
     </div>
-    <div class="hero-photos">
-      <div class="hero-photo-card">
+
+    <!-- Right: bus photo featured frame -->
+    <div class="hero-right">
+      <div class="hero-bus-frame">
         <img src="bus.jpeg" alt="Gujjar Express Coach" />
-        <div class="hero-photo-label">Our Fleet · Gujjar Express</div>
-      </div>
-      <div class="hero-photo-card">
-        <img src="badshahi_mosque.jpg" alt="Badshahi Mosque, Lahore" />
-        <div class="hero-photo-label">Pakistan Landmark · Badshahi Mosque, Lahore</div>
+        <div class="hero-bus-caption">Gujjar Express · Premium Long-Distance Coach</div>
       </div>
     </div>
   </section>
