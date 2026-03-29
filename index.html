@@ -305,7 +305,7 @@
     }
     .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
     .btn-outline {
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
       background: transparent;
@@ -319,6 +319,8 @@
       border: 1.5px solid rgba(255,255,255,0.85);
       text-decoration: none;
       transition: border-color 0.2s, color 0.2s;
+      width: 100%;
+      box-sizing: border-box;
     }
     
     .btn-outline:hover {
@@ -327,69 +329,59 @@
     }
 
 
-    /* booking mini-card in hero */
-    .hero-card-text {
-      display: flex;
-      flex-direction: column; 
-      gap: 0.25rem;
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.9);
-      line-height: 1.4;
-      flex: 1;
-      min-width: 260px;
-      padding-right: 1.4rem;
+    /* ── HERO ACTIONS GRID ── */
+    .hero-actions {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 0.75rem 1rem;
+      margin-top: 2rem;
+      width: fit-content;
     }
-    
-    .hero-card-text strong {
+
+    /* phone info block — left column, row 2 */
+    .hero-phone {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.4;
+      align-self: center;
+    }
+    .hero-phone strong {
       color: var(--gold);
-      font-size: 1.1rem;
+      font-size: 1rem;
       white-space: nowrap;
     }
-    .hero-btns {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
+
+    .box-phone {
+      font-size: 0.75rem;
+      color: rgba(245,197,24,0.5);
+      text-decoration: none;
     }
-    
-    .hero-btns,
-    .hero-card {
-      width: 100%;
-      max-width: 520px;
-    }
-    
-    .hero-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(245,197,24,0.3);
-      border-radius: 4px;
-      padding: 1.2rem 1.4rem;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 1.4rem;
-      margin-top: 1.6rem;
-      flex-wrap: wrap;
-    }
-    
+    .box-phone:hover { color: var(--gold); }
+
+    /* WhatsApp button — right column, row 2; smaller, centered in cell */
     .btn-wa-small {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      justify-self: center;
+      align-self: center;
       background: transparent;
       color: var(--white);
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 1rem 2.2rem;
+      padding: 0.77rem 2.4rem;
       border: 1.5px solid rgba(255,255,255,0.85);
       text-decoration: none;
-      flex-shrink: 0;
-      margin-left: auto;
     }
     .btn-wa-small:hover {
-      color: #25d366;
       border-color: #25d366;
+      color: #25d366;
     }
       
       
@@ -611,31 +603,29 @@
         color: rgba(255,255,255,0.95);
       }
     
-      .hero-btns {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.8rem;
-      }
-    
-      .btn-gold,
-      .btn-outline,
-      .btn-wa-small {
+      .hero-actions {
+        grid-template-columns: 1fr 1fr;
         width: 100%;
+        gap: 0.6rem;
+      }
+
+      .btn-gold {
+        grid-column: 1 / -1;
         justify-content: center;
       }
-    
-      .hero-card {
-      flex-direction: column;
-      align-items: flex-start; 
-      gap: 0.8rem;
+
+      .btn-outline,
+      .btn-wa-small {
+        justify-content: center;
       }
-    
-      .hero-card-text {
-        color: rgba(255,255,255,0.9);
+
+      .hero-phone {
+        border-top: 1px solid rgba(245,197,24,0.2);
+        padding-top: 0.5rem;
       }
     
       .hero-scroll {
-        bottom: 0.8rem;
+        display: none;
       }
     
     }
@@ -690,25 +680,20 @@
       <p class="hero-desc">
         Comfortable, reliable long-distance coach travel across Pakistan.<br />Book online at TicketPakistan.com or reach us directly.
       </p>
-      <div class="hero-btns">
+      <div class="hero-actions">
         <a class="btn-gold" href="https://ticketpakistan.com/" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14L21 3M21 15v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6"/></svg>
           Book Tickets Now
         </a>
         <a class="btn-outline" href="#contact">Contact Us</a>
-      </div>
-      <div class="hero-card">
-        <div class="hero-card-text">
+        <div class="hero-phone">
           <strong>+92 336 324 6801</strong>
           <span>Call or WhatsApp to reserve</span>
+          <a class="box-phone" href="tel:+923363246801">Also on call: +92 336 324 6801</a>
         </div>
-        <a class="btn-wa-small" href="https://wa.me/923363246801" target="_blank" rel="noopener">
-          WhatsApp
-        </a>
-        <a class="box-phone" href="tel:+923363246801">
-          Also on call: +92 336 324 6801
-        </a>
+        <a class="btn-wa-small" href="https://wa.me/923363246801" target="_blank" rel="noopener">WhatsApp</a>
       </div>
+    </div><!-- /hero-content -->
     <div class="hero-scroll">
       <span>Scroll</span>
       <div class="scroll-arrow"></div>
