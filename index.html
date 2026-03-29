@@ -137,13 +137,35 @@
       padding: 5rem 4rem 5rem 6vw;
       position: relative; overflow: hidden;
     }
-    .hero-left-bg {
-      position: absolute; inset: 0;
+    /* ── LANDMARK SECTION ── */
+    .landmark {
+      position: relative; height: 500px; overflow: hidden;
+    }
+    .landmark img {
       width: 100%; height: 100%;
       object-fit: cover; object-position: center 40%;
-      display: block; z-index: 0;
-      filter: brightness(0.22);
+      display: block; filter: brightness(0.65);
     }
+    .landmark-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(8,15,46,0.9) 0%, rgba(8,15,46,0.2) 60%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 3rem 6vw;
+    }
+    .landmark-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .landmark-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      letter-spacing: 0.06em; line-height: 1;
+      color: var(--white);
+    }
+    @media (max-width: 640px) { .landmark { height: 320px; } }
+
     .hero-left::before {
       content: ''; position: absolute; inset: 0; z-index: 1;
       background-image: radial-gradient(rgba(245,197,24,0.05) 1px, transparent 1px);
@@ -466,7 +488,6 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
-      <img class="hero-left-bg" src="badshahi_mosque.jpg" alt="Badshahi Mosque, Lahore" />
       <div class="hero-left-inner">
       <div class="hero-tag">Long-Distance Coach Service · Pakistan</div>
       <h1>GUJJAR<br /><span>EXPRESS</span></h1>
@@ -494,6 +515,15 @@
     </div>
     <div class="hero-right">
       <img src="bus.jpeg" alt="Gujjar Express Coach" />
+    </div>
+  </section>
+
+  <!-- LANDMARK -->
+  <section class="landmark">
+    <img src="badshahi_mosque.jpg" alt="Badshahi Mosque, Lahore — Pakistan landmark on Gujjar Express route" />
+    <div class="landmark-overlay">
+      <div class="landmark-tag">Pakistan Landmark</div>
+      <div class="landmark-title">Badshahi Mosque<br />Lahore</div>
     </div>
   </section>
 
