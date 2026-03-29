@@ -133,21 +133,21 @@
     .hero-bg {
       position: absolute;
       top: 0; right: 0; bottom: 0;
-      width: 65%;
-      object-fit: cover; object-position: left 55%;
+      width: 78%;
+      object-fit: cover; object-position: center 50%;
       display: block; z-index: 0;
-      filter: brightness(0.55) saturate(0.85);
+      filter: brightness(0.75) saturate(1);
     }
-    /* Solid opaque left panel fading to transparent on the right */
+    /* Solid opaque left panel — fades out quickly so bus stays sharp */
     .hero::before {
       content: ''; position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(
         to right,
         var(--blue-dark) 0%,
-        var(--blue-dark) 38%,
-        rgba(8,15,46,0.85) 52%,
-        rgba(8,15,46,0.20) 70%,
-        rgba(8,15,46,0.05) 100%
+        var(--blue-dark) 32%,
+        rgba(8,15,46,0.55) 44%,
+        rgba(8,15,46,0.08) 55%,
+        transparent 62%
       );
       pointer-events: none;
     }
@@ -315,10 +315,10 @@
     .hero-card {
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(245,197,24,0.2);
-      border-radius: 4px; padding: 1.4rem 2rem;
+      border-radius: 4px; padding: 0.9rem 1.2rem;
       display: flex; align-items: center; justify-content: space-between;
-      gap: 1.2rem; flex-wrap: wrap;
-      max-width: 100%;
+      gap: 0.8rem; flex-wrap: wrap;
+      max-width: 420px;
     }
     .hero-card-text { font-size: 0.9rem; color: var(--light); line-height: 1.4; }
     .hero-card-text strong { color: var(--gold); font-size: 1.1rem; display: block; }
@@ -546,7 +546,7 @@
       <h1>GUJJAR<br /><span>EXPRESS</span></h1>
       <div class="hero-ceo">Owner &amp; CEO — Arshad Gujjar</div>
       <p class="hero-desc">
-        Comfortable, reliable long-distance coach travel across Pakistan. Book online at TicketPakistan.com or reach us directly.
+        Comfortable, reliable long-distance coach travel across Pakistan.<br />Book online at TicketPakistan.com or reach us directly.
       </p>
       <div class="hero-btns">
         <a class="btn-gold" href="https://ticketpakistan.com/" target="_blank" rel="noopener">
