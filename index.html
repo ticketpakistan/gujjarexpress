@@ -280,12 +280,14 @@
     .hero-ceo::before { content: ''; display: block; width: 16px; height: 1px; background: rgba(245,197,24,0.4); }
 
     .hero-desc {
-      font-size: 1rem; font-weight: 300;
-      color: var(--light); line-height: 1.75;
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.75;
       margin-bottom: 2rem;
     }
 
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .hero-btns { max-width: 520px; }
     .btn-gold {
       display: inline-flex; align-items: center; gap: 0.6rem;
       background: var(--gold); color: var(--blue-dark);
@@ -298,43 +300,37 @@
       transition: background 0.2s, transform 0.15s;
     }
     .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-outline {
-      display: inline-flex; align-items: center;
-      background: transparent; color: var(--light);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600; font-size: 1.15rem;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      padding: 1.1rem 2.4rem;
-      border: 1px solid rgba(200,212,239,0.35);
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
-    }
+    .btn-outline,
     .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
 
     /* booking mini-card in hero */
     .hero-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(245,197,24,0.2);
-      border-radius: 4px; padding: 0.9rem 1.2rem;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 0.8rem; flex-wrap: wrap;
-      max-width: 420px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(245,197,24,0.3);
+      border-radius: 4px;
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      max-width: 520px;  
     }
-    .hero-card-text { font-size: 0.9rem; color: var(--light); line-height: 1.4; }
+    .hero-card-text {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.4;
+    }
     .hero-card-text strong { color: var(--gold); font-size: 1.1rem; display: block; }
     .btn-wa-small {
-      display: inline-flex; align-items: center;
-      background: transparent; color: var(--light);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600; font-size: 1.1rem; letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 1rem 2.2rem;
-      border: 1px solid rgba(200,212,239,0.25);
-      text-decoration: none;
-      transition: border-color 0.2s, color 0.2s;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.85);
+      background: transparent;
     }
-    .btn-wa-small:hover { color: #25d366; border-color: #25d366; }
-
+    .btn-wa-small:hover {
+      color: #25d366;
+      border-color: #25d366;
+    }
     /* ── ROUTES ── */
     .routes-wrap { background: var(--blue); padding: 6rem 0; }
     .routes-header {
@@ -427,7 +423,7 @@
       letter-spacing: 0.06em; color: var(--white);
     }
     .box-phone {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.75);
       transition: color 0.2s;
     }
     .box-phone:hover {
@@ -496,6 +492,7 @@
         flex-direction: column;
         align-items: flex-start;
         min-height: auto;
+        background: var(--blue-dark); 
       }
       .hero-bg {
         position: relative;
@@ -549,16 +546,6 @@
       .btn-outline {
         width: 100%;
         justify-content: center;
-      }
-      .btn-outline,
-      .btn-wa-small {
-        background: transparent;
-        color: var(--white);
-        border: 1.5px solid rgba(255,255,255,0.85);
-      }
-      .btn-wa-small:hover {
-        color: #25d366;
-        border-color: #25d366;
       }
       .hero-card {
         flex-direction: column;
