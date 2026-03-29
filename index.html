@@ -604,19 +604,17 @@
       }
     
       .hero-actions {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         width: 100%;
         gap: 0.6rem;
       }
 
-      .btn-gold {
-        grid-column: 1 / -1;
-        justify-content: center;
-      }
-
+      .btn-gold,
       .btn-outline,
       .btn-wa-small {
         justify-content: center;
+        align-self: stretch;
+        justify-self: stretch;
       }
 
       .hero-phone {
