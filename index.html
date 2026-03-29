@@ -300,8 +300,33 @@
       transition: background 0.2s, transform 0.15s;
     }
     .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
-    .btn-outline,
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    
+      background: transparent;
+      color: var(--white);
+    
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    
+      padding: 1.1rem 2.4rem;
+    
+      border: 1.5px solid rgba(255,255,255,0.85);
+    
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    
+    .btn-outline:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
 
     /* booking mini-card in hero */
     .hero-card {
@@ -323,10 +348,27 @@
     }
     .hero-card-text strong { color: var(--gold); font-size: 1.1rem; display: block; }
     .btn-wa-small {
-      color: var(--white);
-      border: 1.5px solid rgba(255,255,255,0.85);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    
       background: transparent;
+      color: var(--white);
+    
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    
+      padding: 1rem 2.2rem;
+    
+      border: 1.5px solid rgba(255,255,255,0.85);
+    
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
     }
+
     .btn-wa-small:hover {
       color: #25d366;
       border-color: #25d366;
@@ -492,7 +534,7 @@
         flex-direction: column;
         align-items: flex-start;
         min-height: auto;
-        background: var(--blue-dark); 
+        background: var(--blue-dark);
       }
       .hero-bg {
         position: relative;
@@ -502,6 +544,7 @@
         object-fit: cover;
         object-position: 90% center;
       }
+    
       .hero::before {
         background: linear-gradient(
           to bottom,
@@ -511,6 +554,7 @@
           transparent 85%
         );
       }
+    
       .hero::after {
         height: 70px;
         background: linear-gradient(
@@ -519,49 +563,57 @@
           transparent
         );
       }
+    
       .hero-content {
         width: 100%;
         padding: 1.5rem 1.5rem 3.5rem;
         text-shadow: 0 1px 4px rgba(0,0,0,0.4);
       }
+    
       .hero h1 {
         color: var(--white);
         text-shadow: 0 2px 8px rgba(0,0,0,0.4);
       }
+    
       .hero-tag {
         color: var(--gold-light);
       }
+    
       .hero-ceo {
         color: rgba(245,197,24,0.9);
       }
+    
       .hero-desc {
         color: rgba(255,255,255,0.95);
       }
+    
       .hero-btns {
         flex-direction: column;
         align-items: stretch;
         gap: 0.8rem;
       }
+    
       .btn-gold,
-      .btn-outline {
+      .btn-outline,
+      .btn-wa-small {
         width: 100%;
         justify-content: center;
       }
+    
       .hero-card {
         flex-direction: column;
         align-items: stretch;
         gap: 0.8rem;
       }
+    
       .hero-card-text {
         color: rgba(255,255,255,0.9);
       }
-      .btn-wa-small {
-        width: 100%;
-        justify-content: center;
-      }
+    
       .hero-scroll {
         bottom: 0.8rem;
       }
+    
     }
   </style>
 </head>
