@@ -349,14 +349,17 @@
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(245,197,24,0.3);
       border-radius: 4px;
-      padding: 0.9rem 1.2rem;
+      padding: 1.1rem 1.3rem;
+    
       display: flex;
-      align-items: center;
+      align-items: flex-start; 
       justify-content: space-between;
-      gap: 1rem;
+      gap: 1.2rem;
+    
       max-width: 520px;
-      margin-top: 1.2rem;
-      flex-wrap: nowrap;
+      margin-top: 1.4rem;
+    
+      flex-wrap: wrap; 
     }
     .hero-card-text {
       font-size: 0.9rem;
@@ -364,7 +367,7 @@
       line-height: 1.4;
       flex: 1;
     }
-    .hero-card-text strong { color: var(--gold); font-size: 1.1rem; display: block; }
+    .hero-card-text strong { color: var(--gold); font-size: 1.1rem; display: inline-block; white-space: nowrap; }
     .btn-wa-small {
       display: inline-flex;
       align-items: center;
