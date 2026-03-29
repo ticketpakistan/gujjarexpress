@@ -127,66 +127,51 @@
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      padding: calc(64px + 28px + 4rem) 6vw 5rem;
+      padding: calc(64px + 28px) 0 0;
+      background: var(--blue-dark);
       position: relative; overflow: hidden;
-      display: flex; flex-direction: column; justify-content: center;
-    }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center 35%;
+      display: grid;
+      grid-template-columns: 1fr 420px;
     }
     .hero::before {
       content: ''; position: absolute; inset: 0; z-index: 1;
-      background: linear-gradient(110deg,
-        rgba(8,15,46,0.96) 0%,
-        rgba(8,15,46,0.86) 40%,
-        rgba(8,15,46,0.5) 70%,
-        rgba(8,15,46,0.2) 100%
-      );
+      background-image: radial-gradient(rgba(245,197,24,0.04) 1px, transparent 1px);
+      background-size: 28px 28px; pointer-events: none;
     }
-    .hero-content {
+    .hero-left {
       position: relative; z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 4rem; align-items: center;
-      max-width: 1200px;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 4rem 3rem 4rem 6vw;
     }
-    .hero-bus-card {
-      border: 2px solid rgba(245,197,24,0.4);
-      overflow: hidden; flex-shrink: 0;
+    .hero-left::before, .hero-left::after { display: none; }
+    .hero-left-inner { position: relative; z-index: 2; }
+    .hero-photos {
+      display: flex; flex-direction: column;
+      position: relative; z-index: 2;
     }
-    .hero-bus-card img {
-      width: 100%; height: 220px;
-      object-fit: cover; object-position: center 60%;
-      display: block; filter: brightness(0.9);
+    .hero-photo-card {
+      flex: 1; position: relative; overflow: hidden;
+      border-left: 3px solid rgba(245,197,24,0.35);
     }
-    .hero-bus-label {
-      background: rgba(8,15,46,0.95);
-      border-top: 1px solid rgba(245,197,24,0.3);
-      padding: 0.7rem 1rem;
+    .hero-photo-card img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .hero-photo-card:first-child img { object-position: center 60%; }
+    .hero-photo-card:last-child  img { object-position: center 35%; }
+    .hero-photo-card + .hero-photo-card {
+      border-top: 3px solid rgba(245,197,24,0.35);
+    }
+    .hero-photo-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(8,15,46,0.92) 0%, transparent 100%);
+      padding: 1.8rem 1.2rem 0.9rem;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.66rem; font-weight: 700;
+      font-size: 0.68rem; font-weight: 700;
       letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--gold);
     }
-    .hero-landmark-caption {
-      position: absolute; bottom: 2.5rem; right: 3vw; z-index: 2;
-      text-align: right;
-    }
-    .lc-tag {
-      display: block; font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.62rem; font-weight: 700;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 0.15rem;
-    }
-    .lc-name {
-      display: block; font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.1rem; letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.5);
-    }
-    .hero-left-inner { /* text side content */ }
-    .hero-left::before, .hero-left::after { display: none; }
+    .hero-content { display: contents; }
 
     .hero-tag {
       display: inline-flex; align-items: center; gap: 0.6rem;
@@ -427,12 +412,14 @@
     .hero-content { animation: fadeUp 0.8s ease both; }
 
     @media (max-width: 900px) {
-      .hero-content { grid-template-columns: 1fr; }
-      .hero-bus-card { display: none; }
-      .hero { padding: calc(64px + 28px + 3rem) 4vw 4rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-photos { flex-direction: row; height: 280px; }
+      .hero-photo-card + .hero-photo-card { border-top: none; border-left: 3px solid rgba(245,197,24,0.35); }
+      .hero-left { padding: 3rem 4vw; }
     }
     @media (max-width: 640px) {
-      .hero { padding: calc(64px + 28px + 2rem) 1.5rem 3rem; }
+      .hero-photos { display: none; }
+      .hero-left { padding: 2.5rem 1.5rem; }
       nav { padding: 0 1.2rem; }
       .routes-header, .routes-grid, .routes-note, .book-strip, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
       footer { flex-direction: column; text-align: center; }
@@ -508,14 +495,17 @@
           </a>
         </div>
       </div>
-      <div class="hero-bus-card">
-        <img src="bus.jpeg" alt="Gujjar Express Coach" />
-        <div class="hero-bus-label">Our Fleet · Gujjar Express</div>
       </div>
     </div>
-    <div class="hero-landmark-caption">
-      <span class="lc-tag">Pakistan Landmark</span>
-      <span class="lc-name">Badshahi Mosque · Lahore</span>
+    <div class="hero-photos">
+      <div class="hero-photo-card">
+        <img src="bus.jpeg" alt="Gujjar Express Coach" />
+        <div class="hero-photo-label">Our Fleet · Gujjar Express</div>
+      </div>
+      <div class="hero-photo-card">
+        <img src="badshahi_mosque.jpg" alt="Badshahi Mosque, Lahore" />
+        <div class="hero-photo-label">Pakistan Landmark · Badshahi Mosque, Lahore</div>
+      </div>
     </div>
   </section>
 
