@@ -127,66 +127,51 @@
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      padding: calc(64px + 28px) 0 0;
+      padding-top: calc(64px + 36px);
       position: relative; overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
     }
-    /* Badshahi Mosque full background */
+    /* Badshahi Mosque — full background */
     .hero-bg {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center 40%;
+      object-fit: cover; object-position: center 30%;
       display: block; z-index: 0;
-      filter: brightness(0.38) saturate(0.8);
+      filter: brightness(0.32) saturate(0.75);
     }
-    /* Dark gradient overlay — heavier on left for text, lighter on right for bus photo */
+    /* Left-heavy dark gradient for text legibility */
     .hero::before {
       content: ''; position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(
-        100deg,
-        rgba(8,15,46,0.88) 0%,
-        rgba(8,15,46,0.70) 45%,
-        rgba(8,15,46,0.30) 100%
+        110deg,
+        rgba(8,15,46,0.95) 0%,
+        rgba(8,15,46,0.70) 40%,
+        rgba(8,15,46,0.10) 100%
       );
       pointer-events: none;
     }
-    .hero-left {
-      position: relative; z-index: 2;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 4rem 3rem 4rem 6vw;
+    /* Bottom fade — blends into next section */
+    .hero::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 220px; z-index: 2;
+      background: linear-gradient(to top, var(--blue-dark) 0%, transparent 100%);
+      pointer-events: none;
     }
-    .hero-left::before, .hero-left::after { display: none; }
-    .hero-left-inner { position: relative; z-index: 2; }
-
-    /* Right column — bus photo as a proper featured frame */
-    .hero-right {
-      position: relative; z-index: 2;
-      display: flex; align-items: center; justify-content: center;
-      padding: 3rem 3rem 3rem 1.5rem;
+    /* Content — upper left */
+    .hero-content {
+      position: relative; z-index: 3;
+      padding: 2rem 3rem 20rem 6vw;
+      max-width: 580px;
     }
-    .hero-bus-frame {
-      width: 100%; max-width: 480px;
-      border-radius: 12px; overflow: hidden;
-      border: 2px solid rgba(245,197,24,0.45);
-      box-shadow:
-        0 0 0 6px rgba(245,197,24,0.08),
-        0 30px 70px rgba(0,0,0,0.7);
-      position: relative;
-    }
-    .hero-bus-frame img {
-      width: 100%; height: 340px;
-      object-fit: cover; object-position: center 55%;
+    /* Bus — large, bottom-right, no frame */
+    .hero-bus {
+      position: absolute;
+      bottom: 0; right: -1%;
+      width: 64%; max-width: 960px;
+      z-index: 3;
       display: block;
-    }
-    .hero-bus-caption {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 2rem 1.2rem 0.9rem;
-      background: linear-gradient(to top, rgba(8,15,46,0.95) 0%, transparent 100%);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--gold);
+      object-fit: contain;
+      object-position: bottom right;
+      filter: drop-shadow(-30px 0 80px rgba(8,15,46,0.9));
     }
 
     .hero-tag {
@@ -428,15 +413,11 @@
     .hero-content { animation: fadeUp 0.8s ease both; }
 
     @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-right { padding: 0 4vw 3rem; justify-content: flex-start; }
-      .hero-bus-frame { max-width: 100%; }
-      .hero-bus-frame img { height: 260px; }
-      .hero-left { padding: 3rem 4vw 1.5rem; }
+      .hero-content { padding: 2rem 4vw 22rem 4vw; max-width: 100%; }
+      .hero-bus { width: 85%; right: -2%; }
     }
     @media (max-width: 640px) {
-      .hero-right { display: none; }
-      .hero-left { padding: 2.5rem 1.5rem; }
+      .hero-content { padding: 2rem 1.5rem 16rem 1.5rem; }
       nav { padding: 0 1.2rem; }
       .routes-header, .routes-grid, .routes-note, .book-strip, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
       footer { flex-direction: column; text-align: center; }
@@ -486,44 +467,37 @@
     <!-- Badshahi Mosque full background -->
     <img class="hero-bg" src="badshahi_mosque.jpg" alt="Badshahi Mosque, Lahore" />
 
-    <!-- Left: content -->
-    <div class="hero-left">
-      <div class="hero-left-inner">
-        <div class="hero-tag">Long-Distance Coach Service · Pakistan</div>
-        <h1>GUJJAR<br /><span>EXPRESS</span></h1>
-        <div class="hero-ceo">Owner &amp; CEO — Arshad Gujjar</div>
-        <p class="hero-desc">
-          Comfortable, reliable long-distance coach travel across Pakistan. Book online at TicketPakistan.com or reach us directly.
-        </p>
-        <div class="hero-btns">
-          <a class="btn-gold" href="https://ticketpakistan.com/" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14L21 3M21 15v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6"/></svg>
-            Book Tickets Now
-          </a>
-          <a class="btn-outline" href="#contact">Contact Us</a>
+    <!-- Content — upper left -->
+    <div class="hero-content">
+      <div class="hero-tag">Long-Distance Coach Service · Pakistan</div>
+      <h1>GUJJAR<br /><span>EXPRESS</span></h1>
+      <div class="hero-ceo">Owner &amp; CEO — Arshad Gujjar</div>
+      <p class="hero-desc">
+        Comfortable, reliable long-distance coach travel across Pakistan. Book online at TicketPakistan.com or reach us directly.
+      </p>
+      <div class="hero-btns">
+        <a class="btn-gold" href="https://ticketpakistan.com/" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14L21 3M21 15v6a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h6"/></svg>
+          Book Tickets Now
+        </a>
+        <a class="btn-outline" href="#contact">Contact Us</a>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-text">
+          <strong>+92 336 324 6801</strong>
+          Call or WhatsApp to reserve
         </div>
-        <div class="hero-card">
-          <div class="hero-card-text">
-            <strong>+92 336 324 6801</strong>
-            Call or WhatsApp to reserve
-          </div>
-          <a class="btn-wa-small" href="https://wa.me/923363246801" target="_blank" rel="noopener">
-            WhatsApp
-          </a>
-          <a class="box-phone" href="tel:+923363246801">
-            Also on call: +92 336 324 6801
-          </a>
-        </div>
+        <a class="btn-wa-small" href="https://wa.me/923363246801" target="_blank" rel="noopener">
+          WhatsApp
+        </a>
+        <a class="box-phone" href="tel:+923363246801">
+          Also on call: +92 336 324 6801
+        </a>
       </div>
     </div>
 
-    <!-- Right: bus photo featured frame -->
-    <div class="hero-right">
-      <div class="hero-bus-frame">
-        <img src="bus.jpeg" alt="Gujjar Express Coach" />
-        <div class="hero-bus-caption">Gujjar Express · Premium Long-Distance Coach</div>
-      </div>
-    </div>
+    <!-- Bus — large, bottom-right, no frame -->
+    <img class="hero-bus" src="bus.jpeg" alt="Gujjar Express Coach" />
   </section>
 
   <!-- ROUTES -->
