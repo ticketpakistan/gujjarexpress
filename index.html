@@ -492,10 +492,21 @@
       .hero-content { max-width: 100%; }
     }
     @media (max-width: 640px) {
-      .hero-content { padding: calc(64px + 2rem) 1.5rem 4rem; }
-      nav { padding: 0 1.2rem; }
-      .routes-header, .routes-grid, .routes-note, .book-strip, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
-      footer { flex-direction: column; text-align: center; }
+      .hero { flex-direction: column; align-items: flex-start; min-height: auto; }
+      .hero-bg { position: relative; width: 100%; height: 220px; object-fit: cover; }
+      .hero::before { background: linear-gradient( 
+        to bottom,
+        rgba(8,15,46,0.85) 0%,
+        rgba(8,15,46,0.6) 40%,
+        rgba(8,15,46,0.2) 75%,
+        transparent 100%
+        ); 
+      }
+      .hero::after { height: 160px; }
+      .hero-content {
+        width: 100%;
+        padding: 1.5rem;
+      }
     }
   </style>
 </head>
